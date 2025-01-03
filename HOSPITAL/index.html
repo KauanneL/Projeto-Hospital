@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gerenciamento de Hospital</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    <h1>Sistema de Gerenciamento de Hospital</h1>
+
+    <section>
+        <h2>Agendar Consulta</h2>
+        <form id="agendarConsultaForm">
+            <label for="paciente">Paciente:</label>
+            <input type="text" id="paciente" required>
+            <label for="medico">Médico:</label>
+            <input type="text" id="medico" required>
+            <label for="data">Data:</label>
+            <input type="datetime-local" id="data" required>
+            <button type="submit">Agendar Consulta</button>
+        </form>
+    </section>
+
+    <section>
+        <h2>Atualizar Prontuário</h2>
+        <form id="atualizarProntuarioForm">
+            <label for="pacienteProntuario">Paciente:</label>
+            <input type="text" id="pacienteProntuario" required>
+            <label for="descricao">Descrição:</label>
+            <textarea id="descricao" required></textarea>
+            <button type="submit">Atualizar Prontuário</button>
+        </form>
+    </section>
+
+    <section>
+        <h2>Gerenciar Salas</h2>
+        <form id="gerenciarSalaForm">
+            <label for="sala">Sala:</label>
+            <input type="text" id="sala" required>
+            <label for="ocupacao">Ocupação:</label>
+            <select id="ocupacao">
+                <option value="livre">Livre</option>
+                <option value="ocupada">Ocupada</option>
+            </select>
+            <button type="submit">Atualizar Ocupação</button>
+        </form>
+    </section>
+
+    <h3>Consultas Agendadas</h3>
+    <ul id="consultasList"></ul>
+
+    <script src="app.js"></script>
+</body>
+</html>
