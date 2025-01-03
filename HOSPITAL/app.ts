@@ -2,7 +2,7 @@ import { Paciente } from "./paciente";
 import { Medico } from "./medico";
 import { Consulta } from "./consulta";
 import { Prontuario } from "./prontuario";
-import { Sala } from "./salas";
+import { Sala } from "./lugar";
 
 // Arrays para armazenar os dados
 let pacientes: Paciente[] = [];
@@ -33,11 +33,24 @@ function atualizarProntuario(pacienteNome: string, descricao: string) {
     prontuarios.push(prontuario);
 }
 
-// Função para atualizar a ocupação da sala
+// Função para atualizar a ocupação da sala (sem usar find)
 function atualizarOcupacaoSala(salaNome: string, ocupacao: "livre" | "ocupada") {
-    const sala = salas.find((s) => s.nome === salaNome);
-    if (sala) {
-        sala.ocupacao = ocupacao;
+    let salaEncontrada: Sala | undefined = undefined;
+
+    // Percorre todas as salas e encontra a sala com o nome correspondente
+    for (let i = 0; i < salas.length; i++) {
+        if (salas[i].nome === salaNome) {
+            salaEncontrada = salas[i];
+            break; // Sai do loop quando a sala é encontrada
+        }
+    }
+
+    // Verifica se a sala foi encontrada
+    if (salaEncontrada) {
+        salaEncontrada.ocupacao = ocupacao;  // Atualiza a ocupação
+        console.log(`Ocupação da ${salaEncontrada.nome} atualizada para: ${ocupacao}`);
+    } else {
+        console.error(`Sala com nome "${salaNome}" não encontrada.`);
     }
 }
 
@@ -76,3 +89,4 @@ document.getElementById("gerenciarSalaForm")?.addEventListener("submit", (e) => 
     const ocupacao = (document.getElementById("ocupacao") as HTMLSelectElement).value as "livre" | "ocupada";
     atualizarOcupacaoSala(salaNome, ocupacao);
 });
+
